@@ -1,10 +1,8 @@
-import java.applet.AudioClip;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.Random;
 
-import javax.swing.JApplet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -19,6 +17,13 @@ public class Game implements ActionListener {
 	int presses = 0;
 	Date start = new Date();
 	Random rand = new Random();
+	int diff;
+
+	public void start(int diff) {
+		this.diff = diff;
+		System.out.println("Diff is: " + this.diff);
+		setup();
+	}
 
 	public void setup() {
 		frame = new JFrame();
@@ -36,7 +41,25 @@ public class Game implements ActionListener {
 
 				panel.add(b);
 			} else {
-				b.setText(i + 1 + "");
+
+				if (diff == 0) {
+					// noting to do
+				} else if (diff == 1) {
+					b.setText(i + 1 + "");
+
+				} else if (diff == 2) {
+					int ButtonRandom = rand.nextInt(3);
+					if (ButtonRandom==0) {
+						b.setText("M0le");
+					}else if (ButtonRandom == 1) {
+						b.setText("Mole!");
+					}else if (ButtonRandom ==2) {
+						b.setText("M0le!");
+					}else {
+						b.setText("Moles");
+					}
+
+				}
 				panel.add(b);
 			}
 		}
@@ -48,13 +71,12 @@ public class Game implements ActionListener {
 		JButton buttonPressed = (JButton) arg0.getSource();
 
 		presses++;
-		if (buttonPressed.getText().equalsIgnoreCase("Mole")) {
+		if (buttonPressed.getText().equals("Mole")) {
 			molesHit++;
 
 			frame.dispose();
 			setup();
 			speak("Hit");
-			// playSound("FILE");
 		} else {
 			speak("Miss");
 			notHit++;
@@ -69,7 +91,6 @@ public class Game implements ActionListener {
 
 		lastButton = buttonPressed;
 	}
-
 
 	private void endGame(Date timeAtStart, int molesWhacked) {
 		Date timeAtEnd = new Date();
