@@ -42,12 +42,12 @@ public class Game implements ActionListener {
 				panel.add(b);
 			} else {
 
-				if (diff == 0) {
+				if (diff == 1) {
 					// noting to do
-				} else if (diff == 1) {
+				} else if (diff == 2) {
 					b.setText(i + 1 + "");
 
-				} else if (diff == 2) {
+				} else if (diff == 3) {
 					int ButtonRandom = rand.nextInt(3);
 					if (ButtonRandom==0) {
 						b.setText("M0le");
