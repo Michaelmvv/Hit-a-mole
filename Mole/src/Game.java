@@ -70,11 +70,6 @@ public class Game implements ActionListener {
 		lastButton = buttonPressed;
 	}
 
-	private void playSound(String fileName) {
-		AudioClip sound = JApplet
-				.newAudioClip(getClass().getResource(fileName));
-		sound.play();
-	}
 
 	private void endGame(Date timeAtStart, int molesWhacked) {
 		Date timeAtEnd = new Date();
