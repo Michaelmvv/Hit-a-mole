@@ -1,3 +1,4 @@
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -34,6 +35,7 @@ public class Game implements ActionListener {
 		frame.add(panel);
 		for (int i = 0; i < 300; i++) {
 			JButton b = new JButton();
+			b.setPreferredSize(new Dimension(80, 25));
 			b.addActionListener(this);
 			if (i == mole) {
 

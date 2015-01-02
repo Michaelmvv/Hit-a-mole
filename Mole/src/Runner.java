@@ -1,35 +1,42 @@
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Runner {
+public class Runner implements ActionListener {
 	Game game = new Game();
-	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		JPanel panel = new JPanel();
+	static JFrame frame = new JFrame();
+	static JPanel panel = new JPanel();
 
-		for (int i = 0; i < 3; i++) {
-			JButton b = new JButton();
-			b.setText(i + "");
-			panel.add(b);
-		}
-		frame.add(panel);
-		frame.pack();
-		frame.setVisible(true);
+
+	public static void main(String[] args) {
+new Runner().start();	
 
 	}
-
+public  void start() {
+	for (int i = 0; i < 3; i++) {
+		JButton b = new JButton();
+		b.addActionListener(this);
+		b.setText(i + "");
+		panel.add(b);
+	}
+	frame.add(panel);
+	frame.pack();
+	frame.setVisible(true);
+}
 	public void actionPerformed(ActionEvent arg0) {
 		JButton buttonPressed = (JButton) arg0.getSource();
-		
-		if (buttonPressed.getText().equals("0")) {
+		if (buttonPressed.getText().equalsIgnoreCase("0")) {
 			game.start(1);
-		}else if (buttonPressed.getText().equals("1")) {
+			frame.dispose();
+		} else if (buttonPressed.getText().equalsIgnoreCase("1")) {
 			game.start(2);
-		}else {
+			frame.dispose();
+		} else {
 			game.start(3);
+			frame.dispose();
 		}
 	}
 }
